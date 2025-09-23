@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_hub/presentation/view/bottom_navbar.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -71,7 +72,9 @@ class OnboardingScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavbar()));
+              },
               child: Text(
                 'Explore',
                 style: TextStyle(

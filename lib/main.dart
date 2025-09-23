@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:travel_hub/core/view_model/bottom_navbar_vm.dart';
 import 'package:travel_hub/presentation/view/onboarding_screen.dart';
 
 void main() {
@@ -10,10 +12,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Travel App',
-      home: OnboardingScreen(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => BottomNavbarVm()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Travel App',
+        home: OnboardingScreen(),
+      ),
     );
   }
 }
