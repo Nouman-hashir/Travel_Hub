@@ -36,6 +36,7 @@ class TravelCard extends StatelessWidget {
         children: [
           // Image with Badge
           Stack(
+            clipBehavior: Clip.none,
             children: [
               ClipRRect(
                 borderRadius: const BorderRadius.only(
@@ -52,8 +53,8 @@ class TravelCard extends StatelessWidget {
 
               // Badge on top right
               Positioned(
-                right: 8,
-                bottom: -5,
+                right: 3,
+                bottom: -10,
                 child: Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 2,
