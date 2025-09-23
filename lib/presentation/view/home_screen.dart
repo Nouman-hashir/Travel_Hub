@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_hub/presentation/view/place_detail_screen.dart';
 import 'package:travel_hub/presentation/widgets/category_roe.dart';
 import 'package:travel_hub/presentation/widgets/place_card.dart';
 import 'package:travel_hub/presentation/widgets/recommended_card.dart';
@@ -135,11 +136,25 @@ class HomeScreen extends StatelessWidget {
                         itemBuilder: (context, index) {
                           final place = places[index];
                           final height = place.containsKey('height') ? place['height'] : 280;
-                          return PlaceCard(
-                            imageUrl: place["imageUrl"],
-                            placeName: place["placeName"],
-                            rating: place["rating"],
-                            height: height,
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PlaceDetailScreen(
+                                    imageUrl: place["imageUrl"],
+                                    placeName: place["placeName"],
+                                    rating: place["rating"],
+                                  ),
+                                ),
+                              );
+                            },
+                            child: PlaceCard(
+                              imageUrl: place["imageUrl"],
+                              placeName: place["placeName"],
+                              rating: place["rating"],
+                              height: height,
+                            ),
                           );
                         },
                       ),
