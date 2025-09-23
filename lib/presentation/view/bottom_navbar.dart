@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:travel_hub/core/view_model/bottom_navbar_vm.dart';
+import 'package:travel_hub/presentation/view/home_screen.dart';
 
 class BottomNavbar extends StatefulWidget {
   const BottomNavbar({super.key});
@@ -11,7 +12,7 @@ class BottomNavbar extends StatefulWidget {
 
 class _BottomNavbarState extends State<BottomNavbar> {
   final List<Widget> _screens = const [
-    Center(child: Text("Home Screen")),
+    HomeScreen(),
     Center(child: Text("Tickets Screen")),
     Center(child: Text("Favorites Screen")),
     Center(child: Text("Profile Screen")),
