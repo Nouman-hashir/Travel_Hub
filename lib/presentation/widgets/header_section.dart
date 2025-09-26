@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 
 class HeaderSection extends StatelessWidget {
   final String imageUrl;
+  final String heroTag;
 
-  const HeaderSection({super.key, required this.imageUrl});
+  const HeaderSection({
+    super.key,
+    required this.imageUrl,
+    required this.heroTag,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +20,17 @@ class HeaderSection extends StatelessWidget {
           // Background Image
           ClipRRect(
             borderRadius: BorderRadius.circular(24),
-            child: Image.asset(
-              imageUrl,
-              height: 390,
-              width: double.infinity,
-              fit: BoxFit.cover,
+            child: Hero(
+              tag: heroTag,
+              child: Image.asset(
+                imageUrl,
+                height: 390,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-    
+
           // Back button (top-left)
           Positioned(
             top: 16,
@@ -30,10 +38,13 @@ class HeaderSection extends StatelessWidget {
             child: CircleAvatar(
               backgroundColor: Colors.white,
               child: IconButton(
-              
                 icon: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                  child: const Icon(Icons.arrow_back_ios, color: Colors.black38,size: 18,),
+                  child: const Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.black38,
+                    size: 18,
+                  ),
                 ),
                 onPressed: () => Navigator.pop(context),
               ),

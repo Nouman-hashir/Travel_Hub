@@ -28,40 +28,74 @@ class HomeScreen extends StatelessWidget {
       },
     ];
 
+    final List<Map<String, dynamic>> recommendedTrips = [
+      {
+        "imageUrl": "assets/images/recommended1.png",
+        "title": "Explore Aspen",
+        "duration": "4N/5D",
+        "isHotDeal": true,
+        "rating": 4.6,
+      },
+      {
+        "imageUrl": "assets/images/recommende2.png",
+        "title": "Luxurious Aspen",
+        "duration": "2N/3D",
+        "isHotDeal": true,
+        "rating": 4.8,
+      },
+      {
+        "imageUrl": "assets/images/image3.png",
+        "title": "Explore Aspen",
+        "duration": "4N/5D",
+        "isHotDeal": true,
+        "rating": 4.7,
+      },
+    ];
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Explore',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
-                  ),
-                  Row(
-                    children: const [
-                      Icon(Icons.location_on, color: Color(0xFF196EEE), size: 15),
-                      SizedBox(width: 5),
-                      Text(
-                        'Aspen, USA',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.black45,
-                          fontWeight: FontWeight.w400,
-                        ),
+              Padding(
+                padding: const EdgeInsets.only(top: 50),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Explore',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w300,
                       ),
-                      SizedBox(width: 5),
-                      Icon(Icons.arrow_drop_down, color: Color(0xFF196EEE)),
-                    ],
-                  ),
-                ],
+                    ),
+                    Row(
+                      children: const [
+                        Icon(
+                          Icons.location_on,
+                          color: Color(0xFF196EEE),
+                          size: 15,
+                        ),
+                        SizedBox(width: 5),
+                        Text(
+                          'Aspen, USA',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black45,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        SizedBox(width: 5),
+                        Icon(Icons.arrow_drop_down, color: Color(0xFF196EEE)),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-          
+
               const SizedBox(height: 10),
               const Text(
                 'Aspen',
@@ -72,13 +106,15 @@ class HomeScreen extends StatelessWidget {
                   fontFamily: 'Serif',
                 ),
               ),
-          
               const SizedBox(height: 16),
-          
+
               // 🔹 Search Bar
               Container(
                 height: 50,
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 2,
+                ),
                 decoration: BoxDecoration(
                   color: const Color(0xffA8CCF0).withAlpha(50),
                   borderRadius: BorderRadius.circular(30),
@@ -96,12 +132,12 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-          
+
               const SizedBox(height: 30),
-          
+
               // 🔹 Category Row
               const CategoryDemo(),
-          
+
               const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4.0),
@@ -114,7 +150,9 @@ class HomeScreen extends StatelessWidget {
                         Text(
                           "Popular",
                           style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.w500),
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                         Text(
                           "See All",
@@ -135,7 +173,11 @@ class HomeScreen extends StatelessWidget {
                         separatorBuilder: (_, __) => const SizedBox(width: 15),
                         itemBuilder: (context, index) {
                           final place = places[index];
-                          final height = place.containsKey('height') ? place['height'] : 280;
+                          final height = place.containsKey('height')
+                              ? place['height']
+                              : 280;
+                          final heroTag =
+                              "place_${place["placeName"]}_${index}";
                           return GestureDetector(
                             onTap: () {
                               Navigator.push(
@@ -145,6 +187,7 @@ class HomeScreen extends StatelessWidget {
                                     imageUrl: place["imageUrl"],
                                     placeName: place["placeName"],
                                     rating: place["rating"],
+                                    heroTag: heroTag,
                                   ),
                                 ),
                               );
@@ -154,6 +197,7 @@ class HomeScreen extends StatelessWidget {
                               placeName: place["placeName"],
                               rating: place["rating"],
                               height: height,
+                              heroTag: heroTag,
                             ),
                           );
                         },
@@ -162,31 +206,44 @@ class HomeScreen extends StatelessWidget {
                     const SizedBox(height: 20),
                     Text(
                       "Recommended",
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-          
+
                     const SizedBox(height: 12),
                     SizedBox(
                       height: 220,
-                      child: ListView(
+                      child: ListView.separated(
                         scrollDirection: Axis.horizontal,
-                        // padding: const EdgeInsets.symmetric(horizontal: 10),
-                        children: const [
-                          TravelCard(
-                            imageUrl:
-                                "assets/images/recommended1.png",
-                            title: "Explore Aspen",
-                            duration: "4N/5D",
-                            isHotDeal: true,
-                          ),
-                          TravelCard(
-                            imageUrl:
-                                "assets/images/recommende2.png",
-                            title: "Luxurious Aspen",
-                            duration: "2N/3D",
-                            isHotDeal: true,
-                          ),
-                        ],
+                        itemCount: recommendedTrips.length,
+                        separatorBuilder: (_, __) => const SizedBox(width: 15),
+                        itemBuilder: (context, index) {
+                          final trip = recommendedTrips[index];
+                          final heroTag = "trip_${trip["title"]}_${index}";
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PlaceDetailScreen(
+                                    imageUrl: trip["imageUrl"],
+                                    placeName: trip["title"],
+                                    rating: trip["rating"],
+                                    heroTag: heroTag,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: TravelCard(
+                              imageUrl: trip["imageUrl"],
+                              title: trip["title"],
+                              duration: trip["duration"],
+                              isHotDeal: trip["isHotDeal"],
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ],

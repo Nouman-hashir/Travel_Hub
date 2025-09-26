@@ -5,35 +5,30 @@ import 'package:travel_hub/presentation/widgets/facilities_section.dart';
 import 'package:travel_hub/presentation/widgets/header_section.dart';
 import 'package:travel_hub/presentation/widgets/tite_section.dart';
 
-
 class PlaceDetailScreen extends StatelessWidget {
   final String imageUrl;
   final String placeName;
   final double rating;
+  final String heroTag;
 
   const PlaceDetailScreen({
     super.key,
     required this.imageUrl,
     required this.placeName,
     required this.rating,
+    required this.heroTag,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:  Colors.white, // blue background
+      backgroundColor: Colors.white, // blue background
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-            children:  [
-              HeaderSection(
-                imageUrl: imageUrl,
-              ),
-              TitleSection(
-                title: placeName,
-                rating: rating,
-                reviews: 355,
-              ),
+            children: [
+              HeaderSection(imageUrl: imageUrl, heroTag: heroTag),
+              TitleSection(title: placeName, rating: rating, reviews: 355),
               DescriptionSection(
                 description:
                     "Aspen is as close as one can get to a storybook alpine town in America. "

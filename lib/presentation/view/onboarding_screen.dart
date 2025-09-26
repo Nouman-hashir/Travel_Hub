@@ -18,7 +18,7 @@ class OnboardingScreen extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 60,
+            top: 80,
             left: 80,
             child: Image.asset('assets/images/aspen_text.png'),
           ),
@@ -44,7 +44,6 @@ class OnboardingScreen extends StatelessWidget {
                     fontSize: 38,
                     fontWeight: FontWeight.w400,
                     letterSpacing: 4,
-                 
                   ),
                 ),
                 Text(
@@ -73,7 +72,10 @@ class OnboardingScreen extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavbar()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BottomNavbar()),
+                );
               },
               child: Text(
                 'Explore',

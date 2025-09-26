@@ -7,6 +7,7 @@ class PlaceCard extends StatelessWidget {
   final bool isFavorite;
   final VoidCallback? onFavoriteToggle;
   final int height;
+  final String heroTag;
 
   const PlaceCard({
     super.key,
@@ -16,6 +17,7 @@ class PlaceCard extends StatelessWidget {
     this.isFavorite = false,
     this.onFavoriteToggle,
     this.height = 280,
+    required this.heroTag,
   });
 
   @override
@@ -28,9 +30,9 @@ class PlaceCard extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Image.asset(
-              imageUrl,
-              fit: BoxFit.cover,
+            Hero(
+              tag: heroTag,
+              child: Image.asset(imageUrl, fit: BoxFit.cover),
             ),
             Positioned(
               left: 12,
@@ -40,8 +42,10 @@ class PlaceCard extends StatelessWidget {
                 children: [
                   // Place Name
                   Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.black54,
                       borderRadius: BorderRadius.circular(12),
@@ -59,8 +63,10 @@ class PlaceCard extends StatelessWidget {
 
                   // Rating
                   Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 3,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.black54,
                       borderRadius: BorderRadius.circular(12),
@@ -68,8 +74,11 @@ class PlaceCard extends StatelessWidget {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(Icons.star,
-                            size: 14, color: Colors.amberAccent),
+                        const Icon(
+                          Icons.star,
+                          size: 14,
+                          color: Colors.amberAccent,
+                        ),
                         const SizedBox(width: 4),
                         Text(
                           rating.toStringAsFixed(1),
@@ -94,11 +103,7 @@ class PlaceCard extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 15,
                   backgroundColor: Colors.white,
-                  child: Icon(
-                     Icons.favorite,
-                    color: Colors.red,
-                    size: 15,
-                  ),
+                  child: Icon(Icons.favorite, color: Colors.red, size: 15),
                 ),
               ),
             ),
