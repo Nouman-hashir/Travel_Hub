@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:travel_hub/core/view_model/bottom_navbar_vm.dart';
 import 'package:travel_hub/presentation/view/home_screen.dart';
 import 'package:travel_hub/presentation/view/ticket_screen.dart';
+import 'package:travel_hub/presentation/view/favorites_screen.dart';
+import 'package:travel_hub/presentation/view/profile_screen.dart';
 
 class BottomNavbar extends StatefulWidget {
   const BottomNavbar({super.key});
@@ -15,8 +17,8 @@ class _BottomNavbarState extends State<BottomNavbar> {
   final List<Widget> _screens = const [
     HomeScreen(),
     TicketScreen(),
-    Center(child: Text("Favorites Screen")),
-    Center(child: Text("Profile Screen")),
+    FavoritesScreen(),
+    ProfileScreen(),
   ];
 
   @override
